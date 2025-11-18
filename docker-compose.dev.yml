@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  atms-frontend-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    container_name: atms-frontend-dev
+    ports:
+      - "5173:5173"
+    volumes:
+      - .:/app
+      - /app/node_modules
+    restart: unless-stopped
+    networks:
+      - atms-network
+    environment:
+      - NODE_ENV=development
+      - VITE_HOST=0.0.0.0
+    stdin_open: true
+    tty: true
+    labels:
+      - "com.atms.description=ATMS Frontend Development"
+      - "com.atms.environment=development"
+
+networks:
+  atms-network:
+    driver: bridge
+
