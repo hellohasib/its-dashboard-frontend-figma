@@ -2,7 +2,7 @@
  * Login Page
  */
 import React, { useState, useEffect } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
 import Button from '../components/Button';
 import Input from '../components/Input';
@@ -11,7 +11,6 @@ import { LogIn, AlertCircle } from 'lucide-react';
 
 const Login: React.FC = () => {
   const navigate = useNavigate();
-  const location = useLocation();
   const { login, isAuthenticated, isLoading } = useAuth();
   
   const [username, setUsername] = useState('');
@@ -39,11 +38,10 @@ const Login: React.FC = () => {
       sessionStorage.removeItem('login_error');
       setLoginError(null);
       
-      // Get the original destination or default to dashboard
-      const from = (location.state as any)?.from?.pathname || '/dashboard';
-      navigate(from, { replace: true });
+      // Always redirect to dashboard after login for security and predictability
+      navigate('/dashboard', { replace: true });
     }
-  }, [isAuthenticated, navigate, location]);
+  }, [isAuthenticated, navigate]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
