@@ -6,6 +6,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
 import Button from '../components/Button';
 import Input from '../components/Input';
+import DarkModeToggle from '../components/DarkModeToggle';
 import { LogIn, AlertCircle } from 'lucide-react';
 
 const Login: React.FC = () => {
@@ -93,13 +94,18 @@ const Login: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray flex items-center justify-center px-4">
+    <div className="min-h-screen bg-gray dark:bg-dark flex items-center justify-center px-4 transition-colors">
+      {/* Dark Mode Toggle - Fixed Position */}
+      <div className="fixed top-4 right-4 z-50">
+        <DarkModeToggle />
+      </div>
+
       <div className="w-full max-w-md">
-        <div className="bg-white rounded-2xl border border-stroke shadow-lg p-8">
+        <div className="bg-white dark:bg-dark-dark3 dark:border-gray-700 rounded-2xl border border-stroke shadow-lg p-8">
           {/* Header */}
           <div className="text-center mb-8">
-            <h1 className="text-3xl font-semibold text-dark mb-2">ATMS Login</h1>
-            <p className="text-sm text-primary-text">
+            <h1 className="text-3xl font-semibold text-dark dark:text-gray-200 mb-2">ATMS Login</h1>
+            <p className="text-sm text-primary-text dark:text-gray-400">
               Automated Traffic Management System
             </p>
           </div>
@@ -127,7 +133,7 @@ const Login: React.FC = () => {
           {/* Login Form */}
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
-              <label htmlFor="username" className="block text-sm font-medium text-dark mb-2">
+              <label htmlFor="username" className="block text-sm font-medium text-dark dark:text-gray-200 mb-2">
                 Username
               </label>
               <Input
@@ -144,7 +150,7 @@ const Login: React.FC = () => {
             </div>
 
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-dark mb-2">
+              <label htmlFor="password" className="block text-sm font-medium text-dark dark:text-gray-200 mb-2">
                 Password
               </label>
               <Input
@@ -181,7 +187,7 @@ const Login: React.FC = () => {
 
           {/* Footer */}
           <div className="mt-6 text-center">
-            <p className="text-xs text-primary-text">
+            <p className="text-xs text-primary-text dark:text-gray-400">
               Forgot your password? Contact your administrator.
             </p>
           </div>

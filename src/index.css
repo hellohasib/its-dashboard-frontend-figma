@@ -10,6 +10,11 @@
   --shadow-card: 0 1px 3px 0 rgba(166, 175, 195, 0.4);
 }
 
+.dark {
+  color-scheme: dark;
+  --shadow-card: 0 1px 3px 0 rgba(0, 0, 0, 0.3);
+}
+
 * {
   font-family: inherit;
   box-sizing: border-box;
@@ -21,8 +26,9 @@
   }
 
   body {
-    @apply bg-gray text-dark antialiased m-0;
+    @apply bg-gray dark:bg-dark text-dark dark:text-gray-200 antialiased m-0;
     min-height: 100vh;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
   }
 
   ::selection {
@@ -36,16 +42,15 @@
   }
 
   ::-webkit-scrollbar-track {
-    background: #f9fafb;
+    @apply bg-gray-100 dark:bg-dark-dark3;
   }
 
   ::-webkit-scrollbar-thumb {
-    background: #dfe4ea;
-    border-radius: 999px;
+    @apply bg-stroke dark:bg-gray-600 rounded-full;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: #c4c9d1;
+    @apply bg-gray-400 dark:bg-gray-500;
   }
 }
 

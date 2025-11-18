@@ -54,29 +54,29 @@ const UserDropdown: React.FC = () => {
     <div className="relative" ref={dropdownRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors"
+        className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-dark-dark3 transition-colors"
       >
         <div className="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center text-sm font-medium">
           {userInitials}
         </div>
         <div className="text-left hidden md:block">
-          <p className="text-sm font-medium text-dark">{user.full_name || user.username}</p>
-          <p className="text-xs text-primary-text">{user.roles[0] || 'User'}</p>
+          <p className="text-sm font-medium text-dark dark:text-gray-200">{user.full_name || user.username}</p>
+          <p className="text-xs text-primary-text dark:text-gray-400">{user.roles[0] || 'User'}</p>
         </div>
-        <ChevronDown className={`w-4 h-4 text-primary-text transition-transform ${isOpen ? 'rotate-180' : ''}`} />
+        <ChevronDown className={`w-4 h-4 text-primary-text dark:text-gray-400 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
       </button>
 
       {isOpen && (
-        <div className="absolute right-0 mt-2 w-56 bg-white rounded-2xl border border-stroke shadow-lg z-50 overflow-hidden">
+        <div className="absolute right-0 mt-2 w-56 bg-white dark:bg-dark dark:border-gray-700 rounded-2xl border border-stroke shadow-lg z-50 overflow-hidden">
           {/* User Info */}
-          <div className="px-4 py-3 border-b border-stroke">
-            <p className="text-sm font-semibold text-dark">{user.full_name || user.username}</p>
-            <p className="text-xs text-primary-text">{user.email}</p>
+          <div className="px-4 py-3 border-b border-stroke dark:border-gray-700">
+            <p className="text-sm font-semibold text-dark dark:text-gray-200">{user.full_name || user.username}</p>
+            <p className="text-xs text-primary-text dark:text-gray-400">{user.email}</p>
             <div className="flex flex-wrap gap-1 mt-2">
               {user.roles.map((role) => (
                 <span
                   key={role}
-                  className="px-2 py-0.5 text-xs bg-blue-50 text-primary rounded-md"
+                  className="px-2 py-0.5 text-xs bg-blue-50 dark:bg-blue-900/30 text-primary rounded-md"
                 >
                   {role}
                 </span>
@@ -91,7 +91,7 @@ const UserDropdown: React.FC = () => {
                 navigate('/profile');
                 setIsOpen(false);
               }}
-              className="w-full px-4 py-2 text-left text-sm text-dark hover:bg-gray-50 flex items-center gap-2"
+              className="w-full px-4 py-2 text-left text-sm text-dark dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-dark-dark3 flex items-center gap-2"
             >
               <User className="w-4 h-4" />
               Profile
@@ -103,18 +103,18 @@ const UserDropdown: React.FC = () => {
                   navigate('/users');
                   setIsOpen(false);
                 }}
-                className="w-full px-4 py-2 text-left text-sm text-dark hover:bg-gray-50 flex items-center gap-2"
+                className="w-full px-4 py-2 text-left text-sm text-dark dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-dark-dark3 flex items-center gap-2"
               >
                 <Settings className="w-4 h-4" />
                 Administration
               </button>
             )}
 
-            <div className="border-t border-stroke my-1"></div>
+            <div className="border-t border-stroke dark:border-gray-700 my-1"></div>
 
             <button
               onClick={handleLogout}
-              className="w-full px-4 py-2 text-left text-sm text-dark hover:bg-gray-50 flex items-center gap-2"
+              className="w-full px-4 py-2 text-left text-sm text-dark dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-dark-dark3 flex items-center gap-2"
             >
               <LogOut className="w-4 h-4" />
               Logout
@@ -122,7 +122,7 @@ const UserDropdown: React.FC = () => {
 
             <button
               onClick={handleLogoutAll}
-              className="w-full px-4 py-2 text-left text-sm text-primary-text hover:bg-gray-50 flex items-center gap-2"
+              className="w-full px-4 py-2 text-left text-sm text-primary-text dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-dark-dark3 flex items-center gap-2"
             >
               <LogOut className="w-4 h-4" />
               Logout All Devices

@@ -27,13 +27,13 @@ const Table = ({ columns, data, onSort, sortKey, sortDirection }: TableProps) =>
     <div className="overflow-x-auto">
       <table className="w-full">
         <thead>
-          <tr className="border-b border-stroke">
+          <tr className="border-b border-stroke dark:border-gray-700">
             {columns.map((column) => (
               <th
                 key={column.key}
                 onClick={() => handleSort(column.key, column.sortable)}
-                className={`px-4 py-3 text-left text-sm font-medium text-primary-text ${
-                  column.sortable ? 'cursor-pointer hover:bg-gray-50' : ''
+                className={`px-4 py-3 text-left text-sm font-medium text-primary-text dark:text-gray-400 ${
+                  column.sortable ? 'cursor-pointer hover:bg-gray-50 dark:hover:bg-dark-dark3' : ''
                 }`}
               >
                 <div className="flex items-center gap-2">
@@ -56,10 +56,10 @@ const Table = ({ columns, data, onSort, sortKey, sortDirection }: TableProps) =>
           {data.map((row, rowIndex) => (
             <tr
               key={rowIndex}
-              className="border-b border-stroke hover:bg-gray-50 transition-colors"
+              className="border-b border-stroke dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-dark-dark3 transition-colors"
             >
               {columns.map((column) => (
-                <td key={column.key} className="px-4 py-3 text-sm text-dark">
+                <td key={column.key} className="px-4 py-3 text-sm text-dark dark:text-gray-200">
                   {column.render
                     ? column.render(row[column.key], row)
                     : row[column.key]}

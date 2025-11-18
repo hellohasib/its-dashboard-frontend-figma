@@ -23,8 +23,8 @@ const Button = ({
 
   const variants = {
     primary: 'bg-primary text-white hover:bg-blue-600 active:bg-blue-700',
-    secondary: 'bg-gray-100 text-dark hover:bg-gray-200 active:bg-gray-300',
-    outline: 'border border-stroke text-primary-text hover:bg-gray-50 active:bg-gray-100',
+    secondary: 'bg-gray-100 dark:bg-dark-dark3 text-dark dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 active:bg-gray-300 dark:active:bg-gray-600',
+    outline: 'border border-stroke dark:border-gray-700 text-primary-text dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-dark-dark3 active:bg-gray-100 dark:active:bg-gray-700',
   };
 
   const sizes = {

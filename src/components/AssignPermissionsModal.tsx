@@ -201,7 +201,6 @@ const AssignPermissionsModal: React.FC<AssignPermissionsModalProps> = ({
               {Object.entries(groupedPermissions).map(([resource, resourcePermissions]) => {
                 const resourceIds = resourcePermissions.map(p => p.id);
                 const allSelected = resourceIds.every(id => selectedPermissions.includes(id));
-                const someSelected = resourceIds.some(id => selectedPermissions.includes(id));
                 
                 return (
                   <div key={resource} className="border border-stroke rounded-lg p-3">

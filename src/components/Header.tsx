@@ -3,6 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { ChevronDown, Grid, Layers, Cloud, FileText, PieChart, Check, Settings } from 'lucide-react';
 import { useAuth } from '../hooks/useAuth';
 import UserDropdown from './UserDropdown';
+import DarkModeToggle from './DarkModeToggle';
 
 interface SubMenuItem {
   id: string;
@@ -245,7 +246,7 @@ const Header = () => {
   };
 
   return (
-    <header className="h-20 bg-white border-b border-stroke flex items-center justify-between px-6 sticky top-0 z-50">
+    <header className="h-20 bg-white dark:bg-dark dark:border-gray-700 border-b border-stroke flex items-center justify-between px-6 sticky top-0 z-50 transition-colors">
       {/* Navigation Items */}
       <nav className="flex items-center gap-2" ref={menuRef}>
         {allNavItems.map((item) => (
@@ -254,8 +255,8 @@ const Header = () => {
               onClick={() => handleMenuClick(item.id)}
               className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors ${
                 openMenu === item.id || isPathActive(item)
-                  ? 'text-primary bg-blue-50'
-                  : 'text-primary-text hover:bg-gray-50'
+                  ? 'text-primary bg-blue-50 dark:bg-blue-900/30'
+                  : 'text-primary-text dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-dark-dark3'
               }`}
             >
               {item.icon}
@@ -269,10 +270,10 @@ const Header = () => {
 
             {/* Mega Menu */}
             {openMenu === item.id && item.megaMenu && (
-              <div className="absolute top-full left-0 mt-2 bg-white rounded-2xl border border-stroke shadow-lg p-6 z-50 flex gap-8">
+              <div className="absolute top-full left-0 mt-2 bg-white dark:bg-dark dark:border-gray-700 rounded-2xl border border-stroke shadow-lg p-6 z-50 flex gap-8">
                 {item.megaMenu.map((column) => (
                   <div key={column.title || 'menu'} className="min-w-[240px]">
-                    {column.title && <h4 className="text-sm font-semibold text-dark mb-3">{column.title}</h4>}
+                    {column.title && <h4 className="text-sm font-semibold text-dark dark:text-gray-200 mb-3">{column.title}</h4>}
                     <div className="space-y-1">
                       {column.items.map((subItem, index) => (
                         <button
@@ -281,7 +282,7 @@ const Header = () => {
                           className={`w-full text-left px-4 py-3 text-sm rounded-lg transition-colors flex items-center justify-between ${
                             location.pathname === subItem.path || index === 0
                               ? 'text-primary font-medium'
-                              : 'text-dark hover:bg-gray-50'
+                              : 'text-dark dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-dark-dark3'
                           }`}
                         >
                           {subItem.label}
@@ -298,10 +299,10 @@ const Header = () => {
 
             {/* Category Menu (for Resource Management/Control) */}
             {openMenu === item.id && item.categoryMenu && (
-              <div className="absolute top-full left-0 mt-2 bg-white rounded-2xl border border-stroke shadow-lg p-6 z-50 flex gap-6">
+              <div className="absolute top-full left-0 mt-2 bg-white dark:bg-dark dark:border-gray-700 rounded-2xl border border-stroke shadow-lg p-6 z-50 flex gap-6">
                 {/* Left: Categories */}
                 <div className="min-w-[160px]">
-                  <h4 className="text-sm font-semibold text-dark mb-3">
+                  <h4 className="text-sm font-semibold text-dark dark:text-gray-200 mb-3">
                     {item.id === 'resource-management' ? 'Sasec 2 ITS Facility Menu' : 'Device Type'}
                   </h4>
                   <div className="space-y-1">
@@ -311,8 +312,8 @@ const Header = () => {
                         onClick={() => setSelectedCategory(category.id)}
                         className={`w-full text-left px-3 py-2 text-sm rounded-lg transition-colors flex items-center justify-between ${
                           selectedCategory === category.id
-                            ? 'text-primary bg-blue-50 font-medium'
-                            : 'text-dark hover:bg-gray-50'
+                            ? 'text-primary bg-blue-50 dark:bg-blue-900/30 font-medium'
+                            : 'text-dark dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-dark-dark3'
                         }`}
                       >
                         {category.label}
@@ -325,8 +326,8 @@ const Header = () => {
                 </div>
 
                 {/* Right: Category Items */}
-                <div className="min-w-[220px] bg-gray rounded-2xl p-4">
-                  <h4 className="text-base font-semibold text-dark mb-3">
+                <div className="min-w-[220px] bg-gray dark:bg-dark-dark3 rounded-2xl p-4">
+                  <h4 className="text-base font-semibold text-dark dark:text-gray-200 mb-3">
                     All {selectedCategory.toUpperCase()} {item.id === 'resource-control' ? 'Cameras' : ''}
                   </h4>
                   <div className="space-y-1">
@@ -339,7 +340,7 @@ const Header = () => {
                             ? 'text-primary font-medium'
                             : index === 1
                             ? 'text-primary font-medium'
-                            : 'text-dark hover:bg-gray-100'
+                            : 'text-dark dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
                         }`}
                       >
                         {subItem.label}
@@ -353,8 +354,11 @@ const Header = () => {
         ))}
       </nav>
 
-      {/* User Profile Section */}
-      <UserDropdown />
+      {/* Right Side: Dark Mode Toggle & User Profile */}
+      <div className="flex items-center gap-3">
+        <DarkModeToggle />
+        <UserDropdown />
+      </div>
     </header>
   );
 };

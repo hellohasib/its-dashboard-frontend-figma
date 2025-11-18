@@ -18,7 +18,7 @@ const Sidebar = () => {
   ];
 
   return (
-    <aside className="w-20 bg-white border-r border-stroke h-[calc(100vh-5rem)] flex flex-col items-center py-6">
+    <aside className="w-20 bg-white dark:bg-dark dark:border-gray-700 border-r border-stroke h-[calc(100vh-5rem)] flex flex-col items-center py-6 transition-colors">
       {/* Navigation Items */}
       <nav className="flex flex-col gap-4 w-full">
         {sidebarItems.map((item) => (
@@ -28,8 +28,8 @@ const Sidebar = () => {
             title={item.label}
             className={`w-full flex items-center justify-center py-4 transition-colors relative ${
               location.pathname === item.path
-                ? 'text-primary bg-blue-50'
-                : 'text-primary-text hover:bg-gray-50'
+                ? 'text-primary bg-blue-50 dark:bg-blue-900/30'
+                : 'text-primary-text dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-dark-dark3'
             }`}
           >
             {item.icon}
